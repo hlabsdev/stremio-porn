@@ -1,0 +1,21 @@
+name: stremio-addon
+
+services:
+  stremio-porn:
+    container_name: porn
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      NODE_ENV: production
+      STREMIO_PORN_ENDPOINT: http://localhost
+      STREMIO_PORN_ID: stremio_porn_hlabs
+      STREMIO_PORN_CACHE: redis://redis:6379
+
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    # ports:
+      # - "6379:6379"
